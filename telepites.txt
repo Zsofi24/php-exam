@@ -1,0 +1,33 @@
+TELEPÍTÉSI ÚTMUTATÓ
+
+1. adatbázisban táblák létrehozása (create kóddal)
+2. mindekettő feladat esetén az "index.php" futtatása böngészőben
+
+
+OPERÁTOROK - "create kód"
+
+	CREATE TABLE `operators` (
+	`first_num` INT(11) NULL DEFAULT NULL,
+	`operator` VARCHAR(3) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`second_num` INT(11) NULL DEFAULT NULL
+	)
+	COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
+
+
+VERSENYZŐK - "create kód"
+	
+	CREATE TABLE `versenyzok` (
+	`név` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`születési_dátum` DATE NOT NULL,
+	`nemzetiség` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`rajtszám` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=74826
+;
+
