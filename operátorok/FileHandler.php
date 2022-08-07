@@ -23,7 +23,7 @@ class FileHandler
         }
     }
 
-    public function beolvas() : array
+    public function read() : array
     {
         $resultArray = [];
         if($this->fileName !== NULL) {
@@ -31,22 +31,25 @@ class FileHandler
             if($handler) {
                 $lineCount = 0;
                 while(($line = fgets($handler)) !== false) {
-                    
                     $resultArray[] = explode(' ', substr($line, 0, strlen($line)-2));
                     $lineCount++;
                 }
                 fclose($handler);
             }
         }
-        //print('<pre>');
-        //var_dump($resultArray);
         return $resultArray;
     }
+
+    public function readExpressions(string $fName)
+    {
+        $handler = fopen($fName, 'r');
+        if($handler) {
+            if(($line = fgets($handler)) === false) {
+                return false;
+            } else {
+                return true;
+            }
+            fclose($handler);
+        }
+    }
 }
-
-$fileHandler = new FileHandler('kifejezesek.txt');
-//$fileHandler->setFileName('pilotak.csv');
-$resultArray = $fileHandler->beolvas();
-//print('<pre>');
-//var_dump($resultArray);
-

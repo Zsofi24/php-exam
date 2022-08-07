@@ -23,7 +23,7 @@ class FileHandler
         }
     }
 
-    public function beolvas($header = false) : array
+    public function read($header = false) : array
     {
         $resultArray = [];
         
@@ -42,13 +42,10 @@ class FileHandler
                 fclose($handler);
             }
         }
-        //var_dump($resultArray);
         return $resultArray;
     }
 }
 
-$fileHandler = new FileHandler('pilotak.csv');
-//$fileHandler->setFileName('pilotak.csv');
-$resultArray = $fileHandler->beolvas(false);
-//print('<pre>');
-//var_dump($resultArray);
+// $fileHandler = new FileHandler('pilotak.csv');
+// $fileHandler->setFileName('pilotak.csv');
+// $resultArray = $fileHandler->read(false);

@@ -9,30 +9,24 @@ class DB {
     {
         if(file_exists('config.php')) {
             require_once('config.php');
-        } else {
-            //dobunk egy hibát throw new Exception();
-        }
+        } 
     }
-
 
     function inserts($dataArray)
     {
-        $fieldArray = ['elso_operandus', 'operator', 'masodik_operandus'];
+        $fieldArray = ['first_num', 'operator', 'second_num'];
         $mysql = $this->getConnect();
-        //var_dump($dataArray);
         $types = "isi";
         foreach ($dataArray as $key => $value) {
             $params = [$value[0], $value[1], $value[2]];
-            //var_dump($value);
-            $insert = "INSERT INTO operatorok ($fieldArray[0], $fieldArray[1], $fieldArray[2]) VALUES (?, ?, ?)";
-            //echo "<p>$insert</p>";
+            $insert = "INSERT INTO operators ($fieldArray[0], $fieldArray[1], $fieldArray[2]) VALUES (?, ?, ?)";
             $statement = $this->prepare($insert, $types, $params);
             $statement->execute();
         }
         $this->close();
     }
     
-    protected function getConnect() 
+    public function getConnect() 
     {
         if($this->mysql !== NULL) {
             return $this->mysql;
@@ -58,7 +52,3 @@ class DB {
         return $stmt;
     }
 }
-
-$insert = new DB();
-$new = $insert->inserts($resultArray);
-//echo $new;

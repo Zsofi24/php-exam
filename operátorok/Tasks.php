@@ -1,13 +1,12 @@
 <?php
 require_once './DB.php';
 
-class Feladatok extends DB
+class Tasks extends DB
 {
-    public function masodikFeladat()
+    public function taskSecond()
     {
         $conn = $this->getConnect();
-        $sql = "SELECT COUNT(*) as db FROM operatorok";
-        //$result->query($sql);
+        $sql = "SELECT COUNT(*) as db FROM operators";
         $stmt = $this->prepare($sql, "", []);
         $stmt->execute();
         if ($stmt->error !== "") {
@@ -19,11 +18,10 @@ class Feladatok extends DB
         }
     }
 
-    public function harmadikFeladat()
+    public function taskThird()
     {
         $conn = $this->getConnect();
-        $sql = "SELECT COUNT(operator) AS db_modulo FROM operatorok WHERE operator = 'mod'";
-        //$result->query($sql);
+        $sql = "SELECT COUNT(operator) AS db_modulo FROM operators WHERE operator = 'mod'";
         $stmt = $this->prepare($sql, "", []);
         $stmt->execute();
         if ($stmt->error !== "") {
@@ -35,13 +33,12 @@ class Feladatok extends DB
         }
     }
 
-    public function negyedikFeladat()
+    public function taskFourth()
     {
         $conn = $this->getConnect();
-        $sql = "SELECT elso_operandus, masodik_operandus FROM operatorok";
+        $sql = "SELECT first_num, second_num FROM operators";
         $stmt = $this->prepare($sql, "", []);
         $stmt->execute();
-        $operandusok = [];
         $answer_yes = "van ilyen kifejezés";
         $answer_no = "nincs ilyen kifejezés";
         if ($stmt->error !== "") {
@@ -57,26 +54,26 @@ class Feladatok extends DB
         }
     }
 
-    public function otodikFeladat()
+    public function taskFifth()
     {
         $conn = $this->getConnect();
-        $sql = "SELECT operator, COUNT(operator) AS db_operator FROM operatorok where operator IN ('mod', '/', 'div','-', '*', '+') GROUP BY operator ";
+        $sql = "SELECT operator, COUNT(operator) AS db_operator FROM operators where operator IN ('mod', '/', 'div','-', '*', '+') GROUP BY operator;";
         $stmt = $this->prepare($sql, "", []);
         $stmt->execute();
-        $statisztika = [];
+        $statistics = [];
         if ($stmt->error !== "") {
             return $stmt->error;
         } else {
             $stmt->bind_result($operator, $db_operator);
             while ($stmt->fetch()) {
-                $statisztika[] = "$operator -> $db_operator <br>";
+                $statistics[] = "$operator -> $db_operator";
             }
-            return $statisztika;
+            return $statistics;
         }
     }
 
-    public function hatodikFeladat($a, $b, $muveletiJel) {
-        switch ($muveletiJel) {
+    public function taskSixth($a, $b, $operator) {
+        switch ($operator) {
             case "+":
                 $result = $a + $b;
                 return "$a + $b = $result";
@@ -111,11 +108,4 @@ class Feladatok extends DB
                 return "Hibás operátor!";
         }
     }
-
-    public function hetedikFeladat()
-    {
-        
-    }
 }
-
-

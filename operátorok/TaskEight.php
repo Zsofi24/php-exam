@@ -1,7 +1,7 @@
 <?php
 require_once './DB.php';
 
-class Create extends DB
+class TaskEight extends DB
 {
     private $fileName = NULL;
     
@@ -78,7 +78,7 @@ class Create extends DB
             $a = $resultArray[$i][0];
             $operator = $resultArray[$i][1];
             $b = $resultArray[$i][2];
-            $line = "$a $operator $b = $c \r\n";   //php_eol        
+            $line = "$a $operator $b = $c \r\n";          
             $countArray[$i] = $line;
         }
         return $countArray;
@@ -93,9 +93,3 @@ class Create extends DB
         fclose($handler);
     }
 }
-
-$create = new Create('eredmenyek.txt');
-//$resultArray = $fileHandler->beolvas();
-$results = $create->result($resultArray);
-$countArray = $create->appendArray($resultArray, $results);
-$create->append($countArray);
