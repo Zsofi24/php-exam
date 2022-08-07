@@ -1,10 +1,13 @@
 TELEPÍTÉSI ÚTMUTATÓ
 
-1. adatbázisban táblák létrehozása (create kóddal)
-2. mindekettő feladat esetén az "index.php" futtatása böngészőben
+1. adatbázis létrehozása 
+	- operátorok feladatnál: operator
+	- versenyzők feladatnál: pilotak
+2. táblák létrehozása (create kóddal)
+3. mindekettő feladat esetén az "index.php" futtatása böngészőben
 
 
-OPERÁTOROK - "create kód"
+operator - "create kód"
 
 	CREATE TABLE `operators` (
 	`first_num` INT(11) NULL DEFAULT NULL,
@@ -16,7 +19,7 @@ ENGINE=InnoDB
 ;
 
 
-VERSENYZŐK - "create kód"
+pilotak - "create kód"
 	
 	CREATE TABLE `versenyzok` (
 	`név` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
